@@ -9,7 +9,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
-const session = require('express-session');
+
 const flash = require('connect-flash');
 const Post = require('./models/posts');
 const Review = require('./models/review');
@@ -19,14 +19,18 @@ const { postSchema, reviewSchema } = require('./schemas.js');
 const passport = require('passport');
 const LocalStrategy =require('passport-local');
 const User = require('./models/user');
-const MongoStore = require('connect-mongo');
+
+
 
 const posts = require('./routes/posts');
 const reviews = require('./routes/reviews');
 const users = require('./routes/users');
-// const dbUrl = process.env.DB_URL;
-// mongodb://localhost:27017/blogapp
-mongoose.connect('mongodb://localhost:27017/blogapp', {
+
+const session = require('express-session');  
+const MongoDBStore = require("connect-mongo");
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/blogapp';
+
+mongoose.connect(dbUrl, {
 	useNewUrlParser : true,
 	useCreateIndex : true,
 	useUnifiedTopology : true,
@@ -50,9 +54,11 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-const store = new MongoStore({
-	url : dbUrl,
-	secret : 'thisshouldbeabettersecret',
+const secret = process.env.SECRET;
+
+const store = MongoDBStore.create({
+mongoUrl : dbUrl,
+	secret,
 	touchAfter:24*60*60
 });
 
@@ -64,7 +70,8 @@ store.on("error", function(e) {
 //session and flash
 const sessionConfig = {
 	store,
-	secret : 'thisshouldbeabettersecret',
+	 name: 'session',
+	secret,
 	resave : false,
 	saveUninitialized : true,
 	cookie:{
@@ -130,8 +137,8 @@ app.use((err, req, res, next) => {
 });
 
 
+const port = process.env.PORT || 3000;
 
-
-app.listen(3000, () => {
+app.listen(port, () => {
 	console.log("APP IS LISTENING");
 });
