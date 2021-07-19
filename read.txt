@@ -1,0 +1,15 @@
+mongoatlas - dharmehswaran29@gmail.com
+heroku - dharmimax29@gmail.com
+cloudinary - dharmimax29@gmail.com
+password are same
+db name dharmi in mongoatlas
+heroku:
+heroku login -i
+git init
+git remote add origin/heroku url
+git add .
+git commit -m "messae"
+git push repo master
+heroku repo : https://git.heroku.com/obscure-ravine-70064.git
+site : http://obscure-ravine-70064.herokuapp.com/
+local : https://github.com/dharmidharmu/dharmiblog.git
