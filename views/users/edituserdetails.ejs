@@ -1,0 +1,81 @@
+<% layout('layouts/boilerplate')%>
+<div class="container d-flex justify-content-center align-items-center mt-3 mb-3">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-8 offset-xl-2 ">
+            <div class="card shadow">
+               
+                <div class="card-body">
+                    <h5 class="card-title">Details</h5>
+                    <form action="/userdetails?_method=PUT" method="POST" class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Name</label>
+                            <input class="form-control" type="text" id="name" name="details[name]" value="<%= currentUser.name %>" required autofocus>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                          </div>
+<!-- //job -->
+<div class="mb-3">
+<label class="form-label" for="username">Job </label>
+<select class="form-select" aria-label="Default select example" name="details[job]" value="details[job]" required>
+ <option value="<%= currentUser.job %>"><%= currentUser.job %></option>
+	<% for(let job of jobset) { 
+		if(!(currentUser.job === job)) { %>
+	       <option value="<%= job %>"><%= job %></option> 
+	<% } } %>
+</select>
+</div>
+<!-- job end -->
+<!-- gender -->
+<div class="form-check form-check-inline mb-3">
+  <input
+    class="form-check-input"
+    type="radio"
+    name="details[gender]"
+    id="inlineRadio1"
+    value="<%= currentUser.gender %>"
+		 checked
+  />
+  <label class="form-check-label" for="inlineRadio1"><%= currentUser.gender %></label>
+</div>						
+<% for(let gender of genderset) {
+	if(!(currentUser.gender === gender)) { %>
+<div class="form-check form-check-inline mb-3">
+  <input
+    class="form-check-input"
+    type="radio"
+    name="details[gender]"
+    id="inlineRadio1"
+    value="<%= gender %>"
+  />
+  <label class="form-check-label" for="inlineRadio1"><%= gender %></label>
+</div>
+							
+<% } }	%>
+<!-- gender end -->
+<!-- birthday -->
+						<!-- <h1>
+							<%= currentUser.dob.toLocaleDateString().replace(/\//g,'-') %>
+							<%= currentUser.dob.toISOString() %>
+						</h1> -->
+<div class="mb-3">
+ <label class="form-label" for="username">DOB</label>
+   <input class="form-control" type="date" id="dob" name="details[dob]"  required autofocus>
+    <div class="valid-feedback">
+         Looks good!
+    </div>
+</div>
+						<!-- birthday end -->
+<div class="card-body">
+    <button class="card-link btn btn-success float-right" >Update</button>
+</div>
+                        </form>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	document.getElementById("dob").valueAsDate = new Date('<%= currentUser.dob.toISOString().substring(0,10) %>');					
+</script>

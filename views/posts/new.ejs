@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate')%>
+<div class="row justify-content-center">
+    <h1 class="text-center">New Post</h1>
+    <div class="card" style="width:50rem">
+        <form action="/posts" method="POST" class="validated-form" enctype="multipart/form-data" novalidate>
+            <div class="mb-3 mt-3" >
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="post[title]"
+                    required>
+				<div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="content">Content</label>
+                <textarea class="form-control" type="text" id="content" rows="5" name="post[content]"
+						  required ></textarea>
+				<div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <!-- <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="image" name="post[image]">
+            </div> -->
+             <div class="mb-3">
+                <label class="form-label" for="technology">Techonology</label>
+               <input type="text" class="form-control" id="techonology"  
+                         name="post[technology]" required>
+				 <div class="valid-feedback">
+                    Looks good!
+                </div>
+              </div>
+			 <div class="mb-3">
+                <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Add Post</button>
+            </div>
+        </form>
+        <!-- <a href="/posts">All Posts</a> -->
+    </div>
+</div>
+
+		
+	
