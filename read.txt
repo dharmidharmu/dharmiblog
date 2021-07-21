@@ -12,7 +12,17 @@ git commit -m "messae"
 git push repo master
 heroku repo : https://git.heroku.com/obscure-ravine-70064.git
 site : http://obscure-ravine-70064.herokuapp.com/
+<<<<<<< HEAD
+local : https://github.com/dharmidharmu/dharmiblog.git
+=======
 local : https://github.com/dharmidharmu/dharmiblog.git
 
 git checkout production
 git merge master
+
+git checkout main
+git add .
+git commit
+git push origin HEAD:main
+
+
