@@ -25,4 +25,8 @@ git add .
 git commit
 git push origin HEAD:main
 
+if merge conflict occurs 
+git add .
+git commit
+
 
